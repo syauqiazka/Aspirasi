@@ -1,0 +1,220 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #54B6FD, #2431BC);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+body.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.container {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), #ffffff);
+  border-radius: 25px;
+  margin: 200px;
+  width: calc(100% - 100px); /* Jarak luar 50px kiri-kanan */
+  height: calc(100% - 100px); /* Jarak luar 50px atas-bawah */
+  display: flex;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Biar radius tetap rapi */
+}
+.container-padding{
+    display: flex;
+    padding: 30px;
+}
+
+.left {
+  width: 40%;
+  border-right: 2px solid #4881cc;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.vertical-img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.right {
+  width: 60%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-size: 50px;
+  line-height: 9vh;
+  margin-top: 0;
+  font-family: 'Poppins', sans-serif;
+}
+.form-saran {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 90%;
+  align-items: flex-end;
+}
+
+/* Input & Textarea box */
+.input-box {
+  position: relative;
+  width: 100%;
+}
+
+.input-box input,
+.input-box textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid rgba(84, 182, 253, 0.7);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  outline: none;
+  font-size: 16px;
+  resize: none;
+  transition: all 0.3s ease;
+}
+
+.input-box label {
+  position: absolute;
+  left: 18px;
+  top: 14px;
+  color: #555;
+  font-size: 16px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* Efek fokus & isi */
+.input-box input:focus,
+.input-box input:valid,
+.input-box textarea:focus,
+.input-box textarea:valid {
+  border-color: #54B6FD;
+  box-shadow: 0 0 10px rgba(84, 182, 253, 0.4);
+}
+
+.input-box input:focus + label,
+.input-box input:valid + label,
+.input-box textarea:focus + label,
+.input-box textarea:valid + label {
+  top: -20px;
+  left: 10px;
+  background-color: white;
+  box-shadow: 0px 0px 10px #54b7fd;
+  font-size: 13px;
+  color: #2431BC;
+  padding: 0 6px;
+  border-radius: 10px;
+}
+.btn-kirim {
+  width: 40%;
+  position: relative;
+  padding: 12px 40px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(to right, #54B6FD, #2431BC);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-kirim:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Efek kilau putih saat hover */
+.btn-kirim::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: skewX(-25deg);
+  transition: left 0.6s ease;
+}
+
+.btn-kirim:hover::before {
+  left: 125%;
+}
+/* Popup overlay */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(0px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.popup-overlay.active {
+  visibility: visible;
+  opacity: 1;
+  backdrop-filter: blur(6px);
+}
+
+/* Popup box */
+.popup-box {
+  background: #fff;
+  width: 40%;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: popUp 0.4s ease;
+}
+
+@keyframes popUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Tombol dalam popup */
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.btn-popup {
+  background: linear-gradient(to bottom right, #54B6FD, #2431BC);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 25px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-popup:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}

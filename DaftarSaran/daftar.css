@@ -1,0 +1,255 @@
+/*
+======================
+  General Styles
+======================
+*/
+:root {
+  /* Definisikan warna di sini untuk konsistensi */
+  --primary-color: #337dc2; /* Biru utama */
+  --secondary-color: #2431BC; /* Biru gradien */
+  --background-start: #54B6FD; /* Biru gradien awal */
+  --background-end: #2431BC; /* Biru gradien akhir */
+  --text-dark: #1c1c1c;
+  --text-light: #333;
+  --text-popup: #383838;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  /* Gunakan variabel CSS untuk warna */
+  background: linear-gradient(to bottom right, var(--background-start), var(--background-end));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', Arial, sans-serif;
+  
+  /* Initial state untuk animasi fade-in */
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+body.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*
+======================
+  Main Container
+======================
+*/
+.container {
+  width: 70%;
+  height: 70%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1));
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  transition: filter 0.3s ease;
+}
+
+.blur {
+  filter: blur(6px);
+}
+
+.judul {
+  font-size: 50px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0 0 10px 0;
+}
+
+/*
+======================
+  Inspirasi Container
+======================
+*/
+.inspirasi-container {
+  /* Perbaikan: Ganti nama kelas di sini agar sesuai dengan HTML
+     atau pastikan ID di HTML adalah #inspirasiContainer */
+  flex: 1;
+  background: rgba(255, 255, 255, 0);
+  border: 3px solid var(--primary-color);
+  border-radius: 10px;
+  padding: 15px 30px 10px 15px;
+  margin: 5px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  /* Tambahan: Dukungan untuk scrollbar Firefox */
+  scrollbar-color: var(--primary-color) #e0e0e000;
+  scrollbar-width: thin;
+}
+
+.inspirasi-container::-webkit-scrollbar {
+  width: 12px;
+}
+.inspirasi-container::-webkit-scrollbar-thumb {
+  background: rgba(51, 125, 194, 0.44); /* Opacity 0.44 */
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+}
+.inspirasi-container::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 30px;
+}
+.inspirasi-container,
+#inspirasiContainer {
+  flex: 1;
+  background: rgba(255, 255, 255, 0);
+  border: 3px solid var(--primary-color);
+  border-radius: 10px;
+  padding: 15px 30px 10px 15px;
+  margin: 5px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  scrollbar-color: var(--primary-color) #e0e0e000;
+  scrollbar-width: thin;
+}
+
+
+.box-saran {
+  background: white;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.box-saran:hover {
+  background: rgb(216, 241, 255);
+}
+
+.nama {
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0 0 5px 0;
+  color: var(--text-dark);
+}
+
+.isi {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text-light);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* tampil hanya 3 baris */
+  -webkit-box-orient: vertical;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.isi.expanded {
+  overflow: visible;
+  text-overflow: unset;
+  display: block;
+}
+
+
+/*
+======================
+  Popup Styles
+======================
+*/
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.popup-box {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  padding: 30px 40px;
+  width: 400px;
+  max-width: 85%;
+  text-align: left;
+  animation: muncul 0.3s ease;
+  
+  /* Tambahan agar bisa scroll saat teks panjang */
+  max-height: 80vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Biar scrollbar-nya halus dan rapi */
+.popup-box::-webkit-scrollbar {
+  width: 10px;
+}
+
+.popup-box::-webkit-scrollbar-thumb {
+  background-color: rgba(51, 125, 194, 0.5);
+  border-radius: 10px;
+}
+
+.popup-box::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+
+@keyframes muncul {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.popup-box h2 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  color: var(--text-dark);
+}
+
+/* Penataan untuk label dan value di popup */
+.popup-row {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: var(--text-dark);
+}
+
+.popup-label {
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-right: 8px;
+}
+
+.popup-value {
+  font-weight: 200;
+  color: var(--text-popup);
+  display: inline; /* Menghilangkan float */
+}
+
+/*
+======================
+  Button Styles
+======================
+*/
+#tutupPopup {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 15px;
+  cursor: pointer;
+  float: right;
+  transition: background 0.3s;
+}
+
+#tutupPopup:hover {
+  background: #245c9c;
+}
+
