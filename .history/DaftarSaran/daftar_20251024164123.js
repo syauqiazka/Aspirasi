@@ -6,7 +6,6 @@ const popupIsi = document.getElementById("popupIsi");
 const tutupPopup = document.getElementById("tutupPopup");
 const mainContainer = document.querySelector(".container");
 
-
 // Fungsi ambil data dari backend
 async function ambilSaran() {
   try {
@@ -65,7 +64,10 @@ if (dateStr) {
   header.appendChild(nama);
     header.appendChild(tanggal);
     
-    
+    const div = document.createElement("div");
+    div.className = "aspirasi";
+    div.textContent = aspirasi;
+    container.appendChild(div);
 
   // Isi saran
   const isi = document.createElement("p");

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar Inspirasi</title>
+  <link rel="stylesheet" href="daftar.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="judul">DAFTAR INSPIRASI</h1>
+    <!-- Sesuai dengan JS dan CSS -->
+    <div id="inspirasiContainer" class="inspirasi-container"></div>
+  </div>
+
+  <!-- POPUP -->
+  <div id="popupOverlay" class="popup-overlay">
+    <div class="popup-box">
+      <h2>Detail Saran</h2>
+      <div class="popup-row">
+        <label class="popup-label" for="popupNama">Nama:</label>
+        <input type="text" id="popupNama" class="popup-input" readonly>
+      </div>
+      <div class="popup-row">
+        <label class="popup-label" for="popupIsi">Isi:</label>
+        <textarea id="popupIsi" class="popup-input" rows="4" readonly></textarea>
+      </div>
+      <div class="popup-actions">
+        <button id="editPopup">Edit</button>
+        <button id="simpanPopup" style="display:none;">Simpan</button>
+        <button id="tutupPopup">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="daftar.js"></script>
+</body>
+
+</html>

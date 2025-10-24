@@ -1,0 +1,73 @@
+/* ======================
+   Inspirasi Container
+====================== */
+#inspirasiContainer,
+.inspirasi-container {
+  flex: 1;
+  background: rgba(255, 255, 255, 0);
+  border: 3px solid var(--primary-color);
+  border-radius: 10px;
+  padding: 15px 15px 10px 15px;
+  margin: 5px;
+  overflow-y: auto;      /* scroll vertikal kalau panjang */
+  overflow-x: hidden;    /* hilangin scroll horizontal */
+  word-wrap: break-word; /* pecah kata panjang */
+  white-space: normal;   /* wrap ke baris baru */
+  box-sizing: border-box;
+}
+
+/* Box saran */
+.box-saran {
+  background: white;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  word-wrap: break-word;  /* penting */
+  white-space: normal;    /* penting */
+}
+
+/* Header nama & tanggal */
+.header-saran {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+/* Nama & tanggal */
+.nama {
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--text-dark);
+}
+
+.tanggal {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Isi saran */
+.isi {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text-light);
+  white-space: normal;   /* wrap teks normal */
+  word-wrap: break-word; /* pecah kata panjang */
+  cursor: pointer;
+  overflow: hidden;      /* untuk default clamp */
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;    /* tampil maksimal 3 baris */
+  -webkit-box-orient: vertical;
+  transition: all 0.2s ease;
+}
+
+.isi.expanded {
+  display: block;           /* full teks saat expand */
+  overflow: visible;
+  text-overflow: unset;
+}

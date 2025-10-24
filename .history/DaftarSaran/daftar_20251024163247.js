@@ -6,7 +6,6 @@ const popupIsi = document.getElementById("popupIsi");
 const tutupPopup = document.getElementById("tutupPopup");
 const mainContainer = document.querySelector(".container");
 
-
 // Fungsi ambil data dari backend
 async function ambilSaran() {
   try {
@@ -39,13 +38,11 @@ function tampilkanSaran(list) {
     nama.classList.add("nama");
     nama.textContent = data.nama || "Anonim";
 
-   const tanggal = document.createElement("p");
-tanggal.classList.add("tanggal");
+    
 
-const dateStr = data.createdAt; // pakai createdAt dari DB
-if (dateStr) {
-  const date = new Date(dateStr);
-  if (!isNaN(date)) {
+     if (data.tanggal) {
+    const date = new Date(data.tanggal);
+    // format: 24 Okt 2025, 15:30
     tanggal.textContent = date.toLocaleString("id-ID", {
       day: "2-digit",
       month: "short",
@@ -55,38 +52,37 @@ if (dateStr) {
     });
   } else {
     tanggal.textContent = "-";
-  }
-} else {
-  tanggal.textContent = "-";
-}
+    }
     
-   const header = document.createElement("div");
+    const header = document.createElement("div");
   header.classList.add("header-saran");
   header.appendChild(nama);
-    header.appendChild(tanggal);
+  header.appendChild(tanggal);
+
     
-    
 
-  // Isi saran
-  const isi = document.createElement("p");
-  isi.classList.add("isi");
-  isi.textContent = data.pesan || "-";
+    const isi = document.createElement("p");
+    isi.classList.add("isi");
+    isi.textContent = data.pesan || "-";
 
-  // Append ke box
-  box.appendChild(header); // ❌ sebelumnya nama di-append lagi, ini harus diganti
-  box.appendChild(isi);
+    box.appendChild(nama);
+    box.appendChild(isi);
 
-  container.prepend(box);
+    container.prepend(box);
 
     // Klik → tampilkan popup
-    box.addEventListener("click", () => {
-      popupNama.textContent = data.nama || "Anonim";
-      popupIsi.textContent = data.pesan || "-";
-      popupOverlay.style.display = "flex";
-      mainContainer.classList.add("blur");
+  box.addEventListener("click", () => {
+  if (!popupNama || !popupIsi) return; // mencegah error
+  popupNama.textContent = data.nama || "Anonim";
+  popupIsi.textContent = data.pesan || "-";
 
-      const popupBox = document.querySelector(".popup-box");
-      popupBox.scrollTop = 0;
+  if (popupOverlay) popupOverlay.style.display = "flex";
+  if (mainContainer) mainContainer.classList.add("blur");
+
+  const popupBox = document.querySelector(".popup-box");
+  if (popupBox) popupBox.scrollTop = 0;
+});
+
     });
   });
 }

@@ -97,23 +97,19 @@ body.loaded {
   background: #e0e0e0;
   border-radius: 30px;
 }
-#inspirasiContainer,
-.inspirasi-container {
+.inspirasi-container,
+#inspirasiContainer {
   flex: 1;
   background: rgba(255, 255, 255, 0);
   border: 3px solid var(--primary-color);
   border-radius: 10px;
-  padding: 15px;
+  padding: 15px 30px 10px 15px;
   margin: 5px;
-  overflow-y: auto;      /* scroll vertikal */
-  overflow-x: hidden;    /* hilangkan scroll horizontal */
-  word-wrap: break-word; /* pecah kata panjang */
-  overflow-wrap: anywhere; /* pecah kata super panjang */
-  white-space: normal;   /* wrap teks normal */
-  min-width: 0;          /* penting untuk flexbox */
+  overflow-y: auto;
   box-sizing: border-box;
+  scrollbar-color: var(--primary-color) #e0e0e000;
+  scrollbar-width: thin;
 }
-
 
 
 .box-saran {
@@ -123,12 +119,10 @@ body.loaded {
   padding: 15px;
   margin-bottom: 15px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
   cursor: pointer;
-  word-wrap: break-word;
-  overflow-wrap: anywhere;
-  white-space: normal;
-  min-width: 0; 
 }
+
 .box-saran:hover {
   background: rgb(216, 241, 255);
 }
@@ -144,23 +138,19 @@ body.loaded {
   margin: 0;
   font-size: 16px;
   color: var(--text-light);
-  cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3;      /* maksimal 3 baris */
+  -webkit-line-clamp: 3; /* tampil hanya 3 baris */
   -webkit-box-orient: vertical;
-  word-wrap: break-word;
-  overflow-wrap: anywhere;
-  white-space: normal;
+  cursor: pointer;
   transition: all 0.2s ease;
 }
 
-
 .isi.expanded {
-  display: block;
   overflow: visible;
   text-overflow: unset;
+  display: block;
 }
 
 
@@ -267,22 +257,4 @@ body.loaded {
   font-size: 0.8rem;
   color: #888;
   margin: 2px 0 5px 0;
-}
-
-.header-saran {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.nama {
-  font-weight: bold;
-  font-size: 18px;
-  color: var(--text-dark);
-}
-
-.tanggal {
-  font-size: 0.8rem;
-  color: #888;
 }

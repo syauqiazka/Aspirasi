@@ -6,7 +6,6 @@ const popupIsi = document.getElementById("popupIsi");
 const tutupPopup = document.getElementById("tutupPopup");
 const mainContainer = document.querySelector(".container");
 
-
 // Fungsi ambil data dari backend
 async function ambilSaran() {
   try {
@@ -39,44 +38,13 @@ function tampilkanSaran(list) {
     nama.classList.add("nama");
     nama.textContent = data.nama || "Anonim";
 
-   const tanggal = document.createElement("p");
-tanggal.classList.add("tanggal");
+    const isi = document.createElement("p");
+    isi.classList.add("isi");
+    isi.textContent = data.pesan || "-";
 
-const dateStr = data.createdAt; // pakai createdAt dari DB
-if (dateStr) {
-  const date = new Date(dateStr);
-  if (!isNaN(date)) {
-    tanggal.textContent = date.toLocaleString("id-ID", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  } else {
-    tanggal.textContent = "-";
-  }
-} else {
-  tanggal.textContent = "-";
-}
-    
-   const header = document.createElement("div");
-  header.classList.add("header-saran");
-  header.appendChild(nama);
-    header.appendChild(tanggal);
-    
-    
-
-  // Isi saran
-  const isi = document.createElement("p");
-  isi.classList.add("isi");
-  isi.textContent = data.pesan || "-";
-
-  // Append ke box
-  box.appendChild(header); // ❌ sebelumnya nama di-append lagi, ini harus diganti
-  box.appendChild(isi);
-
-  container.prepend(box);
+    box.appendChild(nama);
+    box.appendChild(isi);
+    container.appendChild(box);
 
     // Klik → tampilkan popup
     box.addEventListener("click", () => {
@@ -84,9 +52,6 @@ if (dateStr) {
       popupIsi.textContent = data.pesan || "-";
       popupOverlay.style.display = "flex";
       mainContainer.classList.add("blur");
-
-      const popupBox = document.querySelector(".popup-box");
-      popupBox.scrollTop = 0;
     });
   });
 }
@@ -95,13 +60,7 @@ if (dateStr) {
 tutupPopup.addEventListener("click", () => {
   popupOverlay.style.display = "none";
   mainContainer.classList.remove("blur");
-
-  const popupBox = document.querySelector(".popup-box");
-  popupBox.scrollTop = 0;
-
-    document.querySelectorAll(".isi.expanded").forEach((el) => {
-      el.classList.remove("expanded");
-      });
+  
 });
 
 // Jalankan setelah halaman dimuat

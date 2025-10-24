@@ -148,12 +148,11 @@ body.loaded {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3;      /* maksimal 3 baris */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   word-wrap: break-word;
-  overflow-wrap: anywhere;
   white-space: normal;
-  transition: all 0.2s ease;
+  overflow-wrap: anywhere;  /* pecah kata super panjang */
 }
 
 
@@ -278,8 +277,6 @@ body.loaded {
 
 .nama {
   font-weight: bold;
-  font-size: 18px;
-  color: var(--text-dark);
 }
 
 .tanggal {

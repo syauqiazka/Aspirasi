@@ -5,7 +5,8 @@ const popupNama = document.getElementById("popupNama");
 const popupIsi = document.getElementById("popupIsi");
 const tutupPopup = document.getElementById("tutupPopup");
 const mainContainer = document.querySelector(".container");
-
+const editPopup = document.getElementById("editPopup");
+const simpanPopup = document.getElementById("simpanPopup");
 
 // Fungsi ambil data dari backend
 async function ambilSaran() {
@@ -21,6 +22,53 @@ async function ambilSaran() {
     container.innerHTML = `<p style="color:red;">Gagal memuat data.</p>`;
   }
 }
+
+let editId = null;
+
+// Klik Edit → enable input
+editPopup.addEventListener("click", () => {
+  popupNama.removeAttribute("readonly");
+  popupIsi.removeAttribute("readonly");
+  editPopup.style.display = "none";
+  simpanPopup.style.display = "inline-block";
+});
+
+// Klik Simpan → PATCH ke backend
+simpanPopup.addEventListener("click", async () => {
+  const nama = popupNama.value.trim();
+  const pesan = popupIsi.value.trim();
+
+  if (!nama || !pesan) {
+    alert("Nama dan pesan tidak boleh kosong!");
+    return;
+  }
+
+  try {
+    const res = await fetch(`http://localhost:5000/api/saran/${editId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nama, pesan }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Gagal update");
+
+    // Refresh list
+    ambilSaran();
+
+    // Tutup popup
+    popupOverlay.style.display = "none";
+    mainContainer.classList.remove("blur");
+
+    // Reset tombol & readonly
+    popupNama.setAttribute("readonly", true);
+    popupIsi.setAttribute("readonly", true);
+    editPopup.style.display = "inline-block";
+    simpanPopup.style.display = "none";
+  } catch (err) {
+    console.error("❌ Error saat update:", err);
+    alert("Gagal update saran!");
+  }
+});
 
 // Fungsi untuk menampilkan saran ke halaman
 function tampilkanSaran(list) {
@@ -84,6 +132,7 @@ if (dateStr) {
       popupIsi.textContent = data.pesan || "-";
       popupOverlay.style.display = "flex";
       mainContainer.classList.add("blur");
+      editId = data.id;
 
       const popupBox = document.querySelector(".popup-box");
       popupBox.scrollTop = 0;
@@ -95,6 +144,10 @@ if (dateStr) {
 tutupPopup.addEventListener("click", () => {
   popupOverlay.style.display = "none";
   mainContainer.classList.remove("blur");
+  popupNama.setAttribute("readonly", true);
+  popupIsi.setAttribute("readonly", true);
+  editPopup.style.display = "inline-block";
+  simpanPopup.style.display = "none";
 
   const popupBox = document.querySelector(".popup-box");
   popupBox.scrollTop = 0;

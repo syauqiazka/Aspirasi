@@ -6,5 +6,5 @@ const router = express.Router();
 router.get("/saran", getSaran);
 router.post("/saran", addSaran);
 router.delete("/saran/:id" ,deleteSaran);
-router.patch("/:id", editSaran);
+
 export default router;

@@ -6,7 +6,6 @@ const popupIsi = document.getElementById("popupIsi");
 const tutupPopup = document.getElementById("tutupPopup");
 const mainContainer = document.querySelector(".container");
 
-
 // Fungsi ambil data dari backend
 async function ambilSaran() {
   try {
