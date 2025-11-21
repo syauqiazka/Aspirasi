@@ -1,0 +1,4 @@
+const supabase = supabase.createClient(
+  "https://fypezjmskjuabudeyfrj.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpkZXhxbGpsZnRmbmVvdWxmbmRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM1MDE2NDEsImV4cCI6MjA3OTA3NzY0MX0.sqkyamI_RU0hzfHTBmNhf30zxrbBwm6s8jQOifXxNlA"
+);

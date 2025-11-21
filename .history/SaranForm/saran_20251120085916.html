@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="saran.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <div class="container-padding">
+      <div class="left">
+        <img src="GMBR.png" alt="Foto Vertikal" class="vertical-img">
+      </div>
+      <div class="right">
+        <h2>Sampaikan Aspirasi mu!</h2>
+        <form class="form-saran">
+          <div class="input-box">
+            <input type="text" id="nama" name="nama" required>
+            <label for="nama">Nama</label>
+          </div>
+          <div class="input-box">
+            <textarea id="pesan" name="pesan" rows="4" required></textarea>
+            <label for="pesan">Pesan</label>
+          </div>
+          <button type="submit" class="btn-kirim">Kirim</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="popup-overlay" id="popup">
+    <div class="popup-box">
+      <h1>Terimakasih Telah Mengisi</h1>
+      <div class="popup-buttons">
+        <button class="btn-popup" onclick="window.location.href='../index.html'">Halaman Utama</button>
+        <button class="btn-popup" onclick="window.location.href='../DaftarSaran/daftar.html'">Lihat Aspirasi</button>
+      </div>
+    </div>
+  </div>
+  <script src="saran.js"></script>
+
+</body>
+
+</html>

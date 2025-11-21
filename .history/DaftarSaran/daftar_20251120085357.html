@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar Inspirasi</title>
+  <link rel="stylesheet" href="daftar.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="judul">DAFTAR ASPIRASI</h1> <!-- Sesuai dengan JS dan CSS -->
+    <div id="inspirasiContainer" class="inspirasi-container"></div>
+  </div> <!-- POPUP -->
+  <div id="popupOverlay" class="popup-overlay">
+    <div class="popup-box">
+      <h2>Detail Saran</h2>
+      <div class="popup-row"> <span class="popup-label">Nama:</span> <span id="popupNama" class="popup-value"></span>
+      </div>
+      <div class="popup-row"> <span class="popup-label">Isi:</span> <span id="popupIsi" class="popup-value"></span>
+      </div> <button id="tutupPopup">Tutup</button>
+    </div>
+  </div>
+  <script src="daftar.js"></script>
+</body>
+
+</html>
